@@ -80,7 +80,7 @@ if (isset($_GET['employe'])){
             if ($count <=3 ) {
                 echo '<a href="?employe='.$resto['id_restaurant'].'"><strong>' . $resto['nom_restau'] . '</strong></a>';
             } else {
-                echo '<a href="?employe='.$resto['id_restaurant'].'"><strong>' . $resto['nom_restau'] . '</a>' ;
+                echo '<a href="?employe='.$resto['id_restaurant'].'">' . $resto['nom_restau'] . '</a>' ;
             }
 
             echo '<br>'.$resto['description'].'<br><br>';
