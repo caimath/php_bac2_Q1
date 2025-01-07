@@ -2,7 +2,7 @@
 include_once('_connexionBD.php');
 
 // 10 resto, activité, min 1employé, pays, ville, nom, description, ordonné ordre alphabé.
-$reqResto= $bd->query('SELECT r.nom AS nom_restau, r.description, v.ville, e.manager, v.code_pays, GROUP_CONCAT(e.nom) AS travailleur
+$reqResto= $bd->query('SELECT r.nom AS nom_restau, r.description, v.ville, e.manager, v.code_pays, GROUP_CONCAT(e.nom) AS travailleur, e.id_restaurant
     FROM restaurants r 
     LEFT JOIN villes v on v.id_ville=r.id_ville
     LEFT JOIN employes e on e.id_restaurant=r.id_restaurant
@@ -57,6 +57,13 @@ if (isset($_GET['employe'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exo2ExamBLancBurger</title>
 </head>
+<style> 
+    a {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
 <body>
     <h1>Exam BDD</h1>
     <h2>Restaurants</h2>
@@ -71,9 +78,9 @@ if (isset($_GET['employe'])){
             
             // Bold pour les 3 premiers restau
             if ($count <=3 ) {
-                echo '<strong>' . $resto['nom_restau'] . '</strong>';
+                echo '<a href="?employe='.$resto['id_restaurant'].'"><strong>' . $resto['nom_restau'] . '</strong></a>';
             } else {
-                echo $resto['nom_restau'] ;
+                echo '<a href="?employe='.$resto['id_restaurant'].'"><strong>' . $resto['nom_restau'] . '</a>' ;
             }
 
             echo '<br>'.$resto['description'].'<br><br>';
